@@ -1,1 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="saveToLocalStorage(event)">
+        <label for="userName">Username:</label>
+        <input type="text" name="userName" id="userNametag" required><br><br>
+        <label for="emailId">Email:</label>
+        <input type="email" name="emailId" id="emailIdtag" required><br><br>
+        <label for="phoneNumber">Phone No:</label>
+        <input type="tel" name="phoneNumber" id="phoneNumbertag"><br><br>
+        <button>Submit</button>
+    </form>
+    <ul id="listOfItems"></ul>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+
+    <script src="app.js"></script>
+</body>
+</html>
