@@ -1,6 +1,10 @@
-concept of promises was introduced to handle asynchronous operations in JavaScript more effectively. In traditional callback-based patterns, managing multiple asynchronous tasks could lead to callback hell or pyramid of doom, making code hard to read and maintain. Promises provide a cleaner and more structured way to handle asynchronous operations by representing a value that might be available now, or in the future, or never.
+The concept of promises was introduced to handle asynchronous operations in JavaScript more effectively. 
+In traditional callback-based patterns, managing multiple asynchronous tasks could lead to callback hell or pyramid of doom, making code hard to read and maintain.
+Promises provide a cleaner and more structured way to handle asynchronous operations by representing a value that might be available now, or in the future, or never.
 
-Now, regarding the question of why async/await is considered better than the promise.then design pattern, it's important to note that async/await is built on top of promises and provides a more concise and readable syntax for working with asynchronous code. Here's an example to illustrate the difference:
+Now, regarding the question of why async/await is considered better than the promise.
+then design pattern, it's important to note that async/await is built on top of promises and provides a more concise and readable syntax for working with asynchronous code. 
+Here's an example to illustrate the difference:
 
 Using promise.then:
 
@@ -25,6 +29,8 @@ fetchData()
   .catch((error) => {
     console.error("Error:", error);
   });
+
+=====================================================================================
 Using async/await:
 
 javascript
@@ -50,4 +56,7 @@ async function fetchDataWithAsync() {
 }
 
 fetchDataWithAsync();
-In the async/await example, the code appears more synchronous and easier to follow, making it resemble traditional synchronous code structure. This can lead to improved readability, especially when dealing with multiple asynchronous operations and error handling. The try/catch block in the async/await example simplifies error handling compared to chaining .then and .catch with promises.
+====================================================================================
+In the async/await example, the code appears more synchronous and easier to follow, making it resemble traditional synchronous code structure.
+This can lead to improved readability, especially when dealing with multiple asynchronous operations and error handling. 
+The try/catch block in the async/await example simplifies error handling compared to chaining .then and .catch with promises.
