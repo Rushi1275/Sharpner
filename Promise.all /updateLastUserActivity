@@ -1,1 +1,69 @@
+// Function to simulate creating a post
+function createPost(post) {
+  return new Promise((resolve, reject) => {
+    // Simulate asynchronous operation (e.g., posting to a server)
+    setTimeout(() => {
+      posts.push(post);
+      resolve(post);
+    }, 1000);
+  });
+}
+
+// Function to simulate updating user's last activity time
+function updateLastUserActivityTime() {
+  return new Promise((resolve, reject) => {
+    // Simulate asynchronous operation (e.g., updating user's last activity time)
+    setTimeout(() => {
+      const currentTime = new Date();
+      lastActivityTime = currentTime.toLocaleString();
+      resolve(lastActivityTime);
+    }, 1000);
+  });
+}
+
+// Function to simulate deleting a post
+function deletePost(postId) {
+  return new Promise((resolve, reject) => {
+    // Simulate asynchronous operation (e.g., deleting post from a server)
+    setTimeout(() => {
+      const index = posts.findIndex(post => post.id === postId);
+      if (index !== -1) {
+        posts.splice(index, 1);
+        resolve(true);
+      } else {
+        reject("Post not found");
+      }
+    }, 1000);
+  });
+}
+
+// Sample data
+let posts = [];
+let lastActivityTime = "";
+
+// Function to execute the desired workflow
+async function executeWorkflow() {
+  try {
+    // Create a new post
+    const newPost = await createPost({ id: 1, content: "Hello, world!" });
+
+    // Update user's last activity time
+    const updatedLastActivityTime = await updateLastUserActivityTime();
+
+    // Log posts and lastActivityTime
+    console.log("All Posts:", posts);
+    console.log("Last Activity Time:", updatedLastActivityTime);
+
+    // Delete the last post
+    await deletePost(newPost.id);
+
+    // Log remaining posts after deletion
+    console.log("Remaining Posts:", posts);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+// Execute the workflow
+executeWorkflow();
 
