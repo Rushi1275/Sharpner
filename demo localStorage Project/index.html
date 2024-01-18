@@ -1,1 +1,105 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="name">
+    <input type="text" id="email">
+    <input type="text" id="phoneNumber">
+    <button id="btn">Submit</button>
+
+    <div id="data-container"></div>
+
+    <script>
+        document.getElementById('btn').addEventListener('click', function () {
+            // Get input values
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phoneNumber = document.getElementById('phoneNumber').value;
+
+            // Create an object to store the data
+            var dataObject = {
+                name: name,
+                email: email,
+                phoneNumber: phoneNumber
+            };
+
+            // Retrieve existing data from local storage
+            var storedData = JSON.parse(localStorage.getItem('userData')) || [];
+
+            // Add new data to the array
+            storedData.push(dataObject);
+
+            // Store the updated array back in local storage
+            localStorage.setItem('userData', JSON.stringify(storedData));
+
+            // Display the data on the screen
+            displayData();
+        });
+
+        function displayData() {
+            // Retrieve data from local storage
+            var storedData = JSON.parse(localStorage.getItem('userData')) || [];
+
+            // Get the container element to display data
+            var container = document.getElementById('data-container');
+
+            // Clear the container
+            container.innerHTML = '';
+
+            // Loop through the stored data and create elements for display
+            storedData.forEach(function (data, index) {
+                var div = document.createElement('div');
+                div.innerHTML = `<p>Name: ${data.name}</p>
+                                 <p>Email: ${data.email}</p>
+                                 <p>Phone Number: ${data.phoneNumber}</p>
+                                 <button onclick="editData(${index})">Edit</button>
+                                 <button onclick="deleteData(${index})">Delete</button>`;
+                container.appendChild(div);
+            });
+        }
+
+        function editData(index) {
+            // Retrieve data from local storage
+            var storedData = JSON.parse(localStorage.getItem('userData')) || [];
+
+            // Prompt user to enter new data
+            var updatedName = prompt('Enter updated name:', storedData[index].name);
+            var updatedEmail = prompt('Enter updated email:', storedData[index].email);
+            var updatedPhoneNumber = prompt('Enter updated phone number:', storedData[index].phoneNumber);
+
+            // Update the data in the array
+            storedData[index].name = updatedName;
+            storedData[index].email = updatedEmail;
+            storedData[index].phoneNumber = updatedPhoneNumber;
+
+            // Store the updated array back in local storage
+            localStorage.setItem('userData', JSON.stringify(storedData));
+
+            // Display the updated data on the screen
+            displayData();
+        }
+
+        function deleteData(index) {
+            // Retrieve data from local storage
+            var storedData = JSON.parse(localStorage.getItem('userData')) || [];
+
+            // Remove the data at the specified index
+            storedData.splice(index, 1);
+
+            // Store the updated array back in local storage
+            localStorage.setItem('userData', JSON.stringify(storedData));
+
+            // Display the updated data on the screen
+            displayData();
+        }
+
+        // Initial display of data on page load
+        displayData();
+    </script>
+</body>
+</html>
